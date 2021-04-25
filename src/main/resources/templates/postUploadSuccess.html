@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Success</title>
+    <style type="text/css">
+        .body{
+            text-align: center;
+        }
+    </style>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="topnav">
+    <a class="active" href="home">Home</a>
+    <a th:href="@{/addPost}">Dodaj post</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+    <a th:href="@{/login}">Logi In</a>
+    <a th:href="@{/logout}">Logout</a>
+</div>
+<h2>Udało Ci się dodać twój post <span th:text="${name}"></span> !!!!!!!!!!</h2>
+
+
+
+</body>
+</html>

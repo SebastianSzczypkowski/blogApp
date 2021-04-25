@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rejestracja</title>
+    <style type="text/css">
+        span {
+            color: red;
+            font-style: italic;
+        }
+        body{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<h3>Panel rejestracyjny</h3>
+<form  th:action="@{/add}" th:object="${newUser}" method="post">
+    <p>Podaj swoje imię: <input type="text" th:field="*{username}"></p>
+    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Podałeś błędne imie :</span>
+    <p>Podaj adres e-mail: <input type="text" th:field="*{emailAddress}"></p>
+    <span th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}">Podałeś błędny adres e-mail :</span>
+    <p>Hasło: <input type="password" th:field="*{password}"></p>
+    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Twoje hasło jest niepoprawne: </span>
+    <p>Data urodzenia: <input type="date" th:field="*{birthday}"> </p>
+    <p><input type="submit" value="Zarejestruj się"></p>
+</form>
+
+</body>
+</html>

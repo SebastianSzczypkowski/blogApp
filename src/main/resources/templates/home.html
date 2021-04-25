@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div class="topnav">
+    <a class="active" href="home">Home</a>
+    <a th:href="@{/addPost}">Dodaj post</a>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <a th:href="adminPanel" >AdminPanel</a>
+    </div>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+    <a th:href="@{/login}">Logi In</a>
+    <a th:href="@{/logout}">Logout</a>
+</div>
+
+<h3>Witaj <span th:text="${name}"></span> </h3>
+<table>
+    <th:block th:each="auth :${authorities}">
+        <tr>
+            <td th:text="${auth}">...</td>
+        </tr>
+    </th:block>
+</table>
+
+<p>Najnowsze posty: </p>
+
+<li th:each="post:${posts}">
+    <p>Temat: <span th:text="${post.getTopic()}" ></span></p>
+    <p>Kategoria: <span th:text="${post.getCategory()}" ></span></p>
+    <p>Treść:<p><p> <span th:text="${post.getPostText()}" ></span></p>
+</li>
+</body>
+</html>

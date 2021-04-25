@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>EditUser</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="topnav">
+    <a class="active" href="home">Home</a>
+    <a th:href="@{/addPost}">Dodaj post</a>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <a th:href="adminPanel" >AdminPanel</a>
+    </div>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+    <a th:href="@{/login}">Logi In</a>
+    <a th:href="@{/logout}">Logout</a>
+</div>
+<form th:action="@{/adminPanel/update/{id}(id=${user.id})}"
+      th:object="${user}"
+      method="post">
+    <p>Podaj swoje imię: <input type="text" th:field="*{username}"></p>
+    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Podałeś błędne imie :</span>
+    <p>Podaj adres e-mail: <input type="text" th:field="*{emailAddress}"></p>
+    <span th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}">Podałeś błędny adres e-mail :</span>
+    <p>Hasło: <input type="password" th:field="*{password}"></p>
+    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Twoje hasło jest niepoprawne: </span>
+    <p>Data urodzenia: <input type="date" th:field="*{birthday}"> </p>
+    <p>Rola: <input type="text" th:field="*{role}"> </p>
+    <p>Aktywność konta: <input type="text" th:field="*{enabled}"> </p>
+
+    <p><input type="submit" value="Zapisz zmiany"></p>
+</form>
+
+</body>
+</html>
