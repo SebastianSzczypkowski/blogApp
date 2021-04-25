@@ -10,8 +10,6 @@
 <div class="topnav">
     <a class="active" href="home">Home</a>
     <a th:href="@{/addPost}">Dodaj post</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">About</a>
     <a th:href="@{/login}">Logi In</a>
     <a th:href="@{/logout}">Logout</a>
 </div>
@@ -22,8 +20,8 @@
     <td>Hasło: <span th:text="${user.getPassword()}" ></span></td>
     <td>Urodziny: <span th:text="${user.getBirthday()}" ></span></td>
     <td>Rola: <span th:text="${user.getRole()}" ></span></td>
-    <td><a th:href="@{/adminPanel/edit/{id}(id=${user.id})}">Edit</a></td>
-    <td><a th:href="@{/adminPanel/delete/{id}(id=${user.id})}">Delete</a></td>
+    <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
+    <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
     </table>
 </body>
 </html>

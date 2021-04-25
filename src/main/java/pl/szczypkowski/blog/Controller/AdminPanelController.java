@@ -38,7 +38,7 @@ public class AdminPanelController {
         return"adminPanel";
     }
 
-    @GetMapping("/adminPanel/edit/{id}")
+    @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id")long id ,Model model)
     {
         User user =userRepo.findById(id).orElseThrow(
@@ -48,7 +48,7 @@ public class AdminPanelController {
         return "edit";
     }
 
-    @PostMapping("adminPanel/update/{id}")
+    @PostMapping("/update/{id}")
     public String updateUser(@PathVariable("id") long id, @Valid User user, BindingResult bindingResult,Model model)
     {
         if(bindingResult.hasErrors())
@@ -59,7 +59,7 @@ public class AdminPanelController {
         userService.addUser(user);
         return "adminPanel";
     }
-    @GetMapping("/adminPanel/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id")long id,Model model){
         User user=userRepo.findById(id).orElseThrow(
                 ()->new IllegalArgumentException("Invalid user ID:" +id)

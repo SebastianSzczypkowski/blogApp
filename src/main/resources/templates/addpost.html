@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
     <title>Creat new post</title>
     <style type="text/css">
         body{
@@ -12,6 +13,12 @@
 </head>
 <body>
 
+<div class="topnav">
+    <a class="active" href="home">Home</a>
+    <a th:href="@{/addPost}">Dodaj post</a>
+    <a th:href="@{/login}">Logi In</a>
+    <a th:href="@{/logout}">Logout</a>
+</div>
 <h2>Dodaj swój nowy post na stronie</h2>
 
 <form th:action="@{/addYourPost}" th:object="${newPost}" method="post">
