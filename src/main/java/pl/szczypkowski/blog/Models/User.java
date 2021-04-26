@@ -26,7 +26,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "")
     private Set<Post> posts= new HashSet<>();
     @NotBlank(message = "Musisz podać swoje imie")
     @Size(min=3,max=25,message = "Twoje imie musi składać się conajmniej z 3 znaków oraz musi mieć ich niewięcej niż 25")
