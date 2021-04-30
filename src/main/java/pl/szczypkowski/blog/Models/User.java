@@ -14,22 +14,19 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
-
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JsonIgnore
-    @OneToMany(mappedBy = "")
-    private Set<Post> posts= new HashSet<>();
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Post> posts;
     @NotBlank(message = "Musisz podać swoje imie")
     @Size(min=3,max=25,message = "Twoje imie musi składać się conajmniej z 3 znaków oraz musi mieć ich niewięcej niż 25")
+    //@Transient
     private String username;
     @NotBlank(message = "Musisz podać adres e-mail")
     @Email(message = "Podaj prawdziwy adres e-mail")
@@ -43,6 +40,13 @@ public class User implements UserDetails {
     private String rank;
     private boolean isEnable;
 
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
 
     public User(@NotBlank(message = "Musisz podać swoje imie") @Size(min = 3, max = 25, message = "Twoje imie musi składać się conajmniej z 3 znaków oraz musi mieć ich niewięcej niż 25") String username, @NotBlank(message = "Musisz podać adres e-mail") @Email(message = "Podaj prawdziwy adres e-mail") String emailAddress, @NotBlank String password, LocalDate birthday) {
         this.username = username;
@@ -153,13 +157,7 @@ public class User implements UserDetails {
         isEnable = enable;
     }
 
-    public Set<Post> getPosts() {
-        return posts;
-    }
 
-    public void setPosts(Set<Post> posts) {
-        this.posts = posts;
-    }
 
     @Override
     public String toString() {

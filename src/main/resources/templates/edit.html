@@ -3,16 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>EditUser</title>
-    <link rel="stylesheet" href="style.css">
+
+    <style type="text/css">
+        body{
+            text-align: center;
+        }
+
+    </style>
+   <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 <div class="topnav">
-    <a class="active" href="home">Home</a>
+    <a class="active" th:href="@{/home}">Home</a>
     <a th:href="@{/addPost}">Dodaj post</a>
 
     <a th:href="@{/login}">Logi In</a>
     <a th:href="@{/logout}">Logout</a>
 </div>
+
 <form th:action="@{/update/{id}(id=${user.id})}"
       th:object="${user}"
       method="post">

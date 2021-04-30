@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.szczypkowski.blog.Models.User;
+import pl.szczypkowski.blog.Repos.PostRepo;
 import pl.szczypkowski.blog.Repos.UserRepo;
 import pl.szczypkowski.blog.Service.UserService;
 
@@ -22,10 +23,14 @@ public class UserController {
 
     UserRepo userRepo;
     UserService userService;
+    PostRepo postRepo;
 
-    public UserController(UserRepo userRepo, UserService userService) {
+
+
+    public UserController(UserRepo userRepo, UserService userService, PostRepo postRepo) {
         this.userRepo = userRepo;
         this.userService = userService;
+        this.postRepo = postRepo;
     }
 
     @GetMapping("/signup")

@@ -1,9 +1,12 @@
 package pl.szczypkowski.blog.Models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Optional;
 
 @Entity
 
@@ -20,21 +23,9 @@ public class Post {
     private String category;
     @NotBlank
     private String postText;
-    @ManyToOne(cascade =CascadeType.ALL)
-    @JoinColumn(name="user_id",referencedColumnName ="id" )
-    private User user;
-
-
-    public Post(@NotBlank @Size(min = 3, max = 120) String topic, @NotBlank @Size(min = 3, max = 100) String category, @NotBlank String postText) {
-        this.topic = topic;
-        this.category = category;
-        this.postText = postText;
-
-    }
-
-    public Post() {
-    }
-
+   @ManyToOne
+   @JoinColumn(name="user_id")
+   private User user;
 
     public User getUser() {
         return user;
@@ -43,6 +34,18 @@ public class Post {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Post(@NotBlank @Size(min = 3, max = 120) String topic, @NotBlank @Size(min = 3, max = 100) String category, @NotBlank String postText, User user) {
+        this.topic = topic;
+        this.category = category;
+        this.postText = postText;
+        this.user = user;
+    }
+
+    public Post() {
+    }
+
+
 
     public Long getId() {
         return id;

@@ -10,6 +10,7 @@
 <div class="topnav">
     <a class="active" href="home">Home</a>
     <a th:href="@{/addPost}">Dodaj post</a>
+    <a th:href="@{/profile}">Profile</a>
     <a th:href="@{/login}">Logi In</a>
     <a th:href="@{/logout}">Logout</a>
 </div>
@@ -23,5 +24,14 @@
     <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
     <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
     </table>
+
+<table th:each="post:${posts}">
+    <td>Temat: <span th:text="${post.getTopic()}" ></span></td>
+    <td>Kategoria: <span th:text="${post.getCategory()}" ></span></td>
+    <td>Treść: <span th:text="${post.getPostText()}" ></span></td>
+    <td>Autor: <span th:text="${post.getUser()}" ></span></td>
+
+</table>
 </body>
+
 </html>

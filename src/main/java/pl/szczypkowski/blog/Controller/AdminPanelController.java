@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.szczypkowski.blog.Models.Post;
 import pl.szczypkowski.blog.Models.User;
 import pl.szczypkowski.blog.Repos.PostRepo;
 import pl.szczypkowski.blog.Repos.UserRepo;
@@ -34,7 +35,9 @@ public class AdminPanelController {
     public String adminPanel(Principal principal, Model model)
     {
         List<User> userList=(List<User>) userService.findAll();
+        List<Post> postList=(List<Post>) postService.findAll();
         model.addAttribute("users",userList);
+        model.addAttribute("posts",postList);
         return"adminPanel";
     }
 
@@ -54,10 +57,10 @@ public class AdminPanelController {
         if(bindingResult.hasErrors())
         {
             user.setId(id);
-            return "edit";
+            return "redirect:/edit";
         }
         userService.addUser(user);
-        return "adminPanel";
+        return "redirect:/adminPanel";
     }
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id")long id,Model model){
@@ -65,7 +68,7 @@ public class AdminPanelController {
                 ()->new IllegalArgumentException("Invalid user ID:" +id)
         );
         userRepo.delete(user);
-        return"adminPanel";
+        return"redirect:/adminPanel";
     }
 
 

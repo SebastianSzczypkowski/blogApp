@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="topnav">
+    <a class="active" href="home">Home</a>
+    <a th:href="@{/addPost}">Dodaj post</a>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <a th:href="adminPanel" >AdminPanel</a>
+    </div>
+    <a th:href="@{/login}">Logi In</a>
+    <a th:href="@{/logout}">Logout</a>
+</div>
+<h3>Witaj <span th:text="${name}"> oto twój profil yu znajdziesz wszytkie informacje dotyczące twojego konta</span> </h3>
+
+<p>Username: <span th:text="${currentUser.getUsername()}"></span></p>
+<p>Role: <span th:text="${currentUser.getRole()}"></span></p>
+<p>Birthday: <span th:datetime="${currentUser.getBirthday()}"></span></p>
+<p>Address e-mail: <span th:text="${currentUser.getEmailAddress()}"></span></p>
+<p>Rank: <span th:text="${currentUser.getRank()}"></span></p>
+
+<p><h3>Your posts: </h3></p>
+<li th:each="post:${userPosts}">
+    <p>Topic: <span th:text="${userPosts.getTopic()}" ></span></p>
+    <p>Category: <span th:text="${userPosts.getCategory()}" ></span></p>
+    <p>PostText: <p><p> <span th:text="${userPosts.getPostText()}" ></span></p>
+</li>
+
+</body>
+</html>

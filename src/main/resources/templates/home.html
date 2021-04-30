@@ -14,11 +14,13 @@
     <div sec:authorize="hasRole('ROLE_ADMIN')">
         <a th:href="adminPanel" >AdminPanel</a>
     </div>
+    <a th:href="@{/profile}">Profile</a>
     <a th:href="@{/login}">Logi In</a>
     <a th:href="@{/logout}">Logout</a>
 </div>
 
 <h3>Witaj <span th:text="${name}"></span> </h3>
+
 <table>
     <th:block th:each="auth :${authorities}">
         <tr>
@@ -30,6 +32,7 @@
 <p>Najnowsze posty: </p>
 
 <li th:each="post:${posts}">
+    <p>Autor: <span th:text="${post.getUser().getUsername()}"></span></p>
     <p>Temat: <span th:text="${post.getTopic()}" ></span></p>
     <p>Kategoria: <span th:text="${post.getCategory()}" ></span></p>
     <p>Treść:<p><p> <span th:text="${post.getPostText()}" ></span></p>
