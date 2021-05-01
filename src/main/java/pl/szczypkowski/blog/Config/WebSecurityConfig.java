@@ -42,6 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/home").authenticated()
                     .antMatchers("/adminPanel").hasRole("ADMIN")
                     .antMatchers("/addPost").authenticated()
+                    .antMatchers("/edit").hasRole("ADMIN")
+                    .antMatchers("/addFile").authenticated()
                     .and().formLogin().defaultSuccessUrl("/home");
     }
 }

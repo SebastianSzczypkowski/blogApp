@@ -54,7 +54,6 @@ public class User implements UserDetails {
         this.password = password;
         this.birthday = birthday;
     }
-
     public User(@NotBlank(message = "Musisz podać swoje imie") @Size(min = 3, max = 25, message = "Twoje imie musi składać się conajmniej z 3 znaków oraz musi mieć ich niewięcej niż 25") String username, @NotBlank(message = "Musisz podać adres e-mail") @Email(message = "Podaj prawdziwy adres e-mail") String emailAddress, @NotBlank String password, LocalDate birthday, String role, boolean isEnable) {
         this.username = username;
         this.emailAddress = emailAddress;
@@ -63,11 +62,9 @@ public class User implements UserDetails {
         this.role = role;
         this.isEnable = isEnable;
     }
-
     public User() {
 
     }
-
     public Long getId() {
         return id;
     }
@@ -156,9 +153,6 @@ public class User implements UserDetails {
     public void setEnable(boolean enable) {
         isEnable = enable;
     }
-
-
-
     @Override
     public String toString() {
         return "User{" +

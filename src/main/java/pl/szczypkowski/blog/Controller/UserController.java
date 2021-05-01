@@ -24,15 +24,11 @@ public class UserController {
     UserRepo userRepo;
     UserService userService;
     PostRepo postRepo;
-
-
-
     public UserController(UserRepo userRepo, UserService userService, PostRepo postRepo) {
         this.userRepo = userRepo;
         this.userService = userService;
         this.postRepo = postRepo;
     }
-
     @GetMapping("/signup")
     public String get(Model model)
     {
@@ -48,7 +44,6 @@ public class UserController {
            return "signup";
        }
        else {
-
            userService.addUser(user);
            return "home";
        }

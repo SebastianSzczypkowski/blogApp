@@ -34,7 +34,6 @@ public class Post {
     public void setUser(User user) {
         this.user = user;
     }
-
     public Post(@NotBlank @Size(min = 3, max = 120) String topic, @NotBlank @Size(min = 3, max = 100) String category, @NotBlank String postText, User user) {
         this.topic = topic;
         this.category = category;
@@ -44,8 +43,6 @@ public class Post {
 
     public Post() {
     }
-
-
 
     public Long getId() {
         return id;

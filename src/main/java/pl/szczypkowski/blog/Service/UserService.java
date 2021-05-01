@@ -27,7 +27,6 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
         this.postRepo = postRepo;
     }
-
     public void addUser(User user)
     {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -41,9 +40,6 @@ public class UserService {
     {
         return userRepo.findAll();
     }
-
-
-
     @EventListener(ApplicationReadyEvent.class)
     public void fillDB()
     {

@@ -25,7 +25,6 @@ public class ProfileController {
         this.postRepo = postRepo;
     }
 
-
     @RequestMapping(value="/profile", method = RequestMethod.GET)
     public String profile(Principal principal, Model model)
     {
@@ -33,22 +32,14 @@ public class ProfileController {
         Optional<User>userOpitonal =userRepo.findByUsername(name);
         User user=userOpitonal.get();
 
-
        Optional<Post> postList= postRepo.findByUser(user);
         Post post = new Post();
-
-
 
         model.addAttribute("currentUser",userOpitonal.get());
         if(!postList.isEmpty())
         {
             model.addAttribute("userPosts",postList.get());
         }
-
-
-
-
-
 
         return "profile";
     }

@@ -15,14 +15,9 @@ import javax.persistence.Access;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private UserRepo userRepo;
-
-
     public UserDetailsServiceImpl(UserRepo userRepo) {
         this.userRepo = userRepo;
     }
-
-
-
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User user = userRepo.findByUsername(s).get();
