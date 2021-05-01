@@ -1,28 +1,18 @@
 package pl.szczypkowski.blog.Controller;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import pl.szczypkowski.blog.Models.FileDB;
 import pl.szczypkowski.blog.Models.Post;
-import pl.szczypkowski.blog.Models.ResponseMessage;
 import pl.szczypkowski.blog.Models.User;
 import pl.szczypkowski.blog.Repos.PostRepo;
 import pl.szczypkowski.blog.Repos.UserRepo;
-import pl.szczypkowski.blog.Service.FileStorageService;
 import pl.szczypkowski.blog.Service.PostService;
 import pl.szczypkowski.blog.Service.UserService;
 
 import javax.validation.Valid;
-import java.io.IOException;
-import java.net.URI;
 import java.security.Principal;
 import java.util.Optional;
 

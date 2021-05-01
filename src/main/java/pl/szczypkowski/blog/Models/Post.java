@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Optional;
 
 @Entity
@@ -26,9 +27,18 @@ public class Post {
    @ManyToOne
    @JoinColumn(name="user_id")
    private User user;
-
+   @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
+   private List<FileDB> files;
     public User getUser() {
         return user;
+    }
+
+    public List<FileDB> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<FileDB> files) {
+        this.files = files;
     }
 
     public void setUser(User user) {

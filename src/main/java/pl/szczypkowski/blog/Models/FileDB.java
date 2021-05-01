@@ -13,13 +13,33 @@ public class FileDB
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private  String type;
     @Lob
     private byte[] data;
+    @ManyToOne
+    @JoinColumn(name="post_id")
+    private Post post;
 
-    public FileDB(String name,  byte[] data) {
-        super();
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
+    public FileDB(String name, String type, byte[] data) {
         this.name = name;
+        this.type = type;
         this.data = data;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public FileDB() {

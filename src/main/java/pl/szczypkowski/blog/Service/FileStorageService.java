@@ -17,11 +17,11 @@ public class FileStorageService {
     public FileDB store(MultipartFile multipartFile)throws IOException
     {
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        FileDB fileDB = new FileDB(fileName,multipartFile.getBytes());
+        FileDB fileDB = new FileDB(fileName,multipartFile.getContentType(),multipartFile.getBytes());
         return fileRepo.save(fileDB);
     }
 
-    public FileDB getFile(String id)
+    public FileDB getFile(Long id)
     {
         return fileRepo.findById(id).get();
     }
