@@ -6,7 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
-public class FileDB
+public class FileData
 {
 
     @Id
@@ -14,8 +14,7 @@ public class FileDB
     private Long id;
     private String name;
     private  String type;
-    @Lob
-    private byte[] data;
+
     @ManyToOne
     @JoinColumn(name="post_id")
     private Post post;
@@ -28,10 +27,10 @@ public class FileDB
         this.post = post;
     }
 
-    public FileDB(String name, String type, byte[] data) {
+    public FileData(String name, String type) {
         this.name = name;
         this.type = type;
-        this.data = data;
+
     }
 
     public String getType() {
@@ -41,8 +40,14 @@ public class FileDB
     public void setType(String type) {
         this.type = type;
     }
+    @Transient
+    public String getPhotosImagePath() {
+        if (name == null || id == null) return null;
 
-    public FileDB() {
+        return "/user-photos/" + id + "/" + name;
+    }
+
+    public FileData() {
     }
 
     public Long getId() {
@@ -62,11 +67,4 @@ public class FileDB
     }
 
 
-    public byte[] getData() {
-        return data;
-    }
-
-    public void setData(byte[] data) {
-        this.data = data;
-    }
 }

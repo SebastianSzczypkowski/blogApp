@@ -1,16 +1,12 @@
 package pl.szczypkowski.blog.Models;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.List;
-import java.util.Optional;
 
 @Entity
-
 public class Post {
 
     @Id
@@ -28,22 +24,26 @@ public class Post {
    @JoinColumn(name="user_id")
    private User user;
    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
-   private List<FileDB> files;
+   private List<FileData> files;
+
+    private String name;
+    private  String type;
     public User getUser() {
         return user;
     }
 
-    public List<FileDB> getFiles() {
+    public List<FileData> getFiles() {
         return files;
     }
 
-    public void setFiles(List<FileDB> files) {
+    public void setFiles(List<FileData> files) {
         this.files = files;
     }
 
     public void setUser(User user) {
         this.user = user;
     }
+
     public Post(@NotBlank @Size(min = 3, max = 120) String topic, @NotBlank @Size(min = 3, max = 100) String category, @NotBlank String postText, User user) {
         this.topic = topic;
         this.category = category;

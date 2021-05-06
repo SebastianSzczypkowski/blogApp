@@ -41,7 +41,7 @@ public class AdminPanelController {
         return"adminPanel";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editUser/{id}")
     public String edit(@PathVariable("id")long id ,Model model)
     {
         User user =userRepo.findById(id).orElseThrow(
@@ -51,7 +51,7 @@ public class AdminPanelController {
         return "edit";
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/updateUser/{id}")
     public String updateUser(@PathVariable("id") long id, @Valid User user, BindingResult bindingResult,Model model)
     {
         if(bindingResult.hasErrors())

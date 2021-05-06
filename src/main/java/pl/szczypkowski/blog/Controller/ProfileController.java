@@ -32,7 +32,7 @@ public class ProfileController {
         Optional<User>userOpitonal =userRepo.findByUsername(name);
         User user=userOpitonal.get();
 
-       Optional<Post> postList= postRepo.findByUser(user);
+       Optional<Post> postList=(postRepo.findByUser(user));
         Post post = new Post();
 
         model.addAttribute("currentUser",userOpitonal.get());

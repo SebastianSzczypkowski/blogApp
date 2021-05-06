@@ -36,6 +36,7 @@
     <p>Temat: <span th:text="${post.getTopic()}" ></span></p>
     <p>Kategoria: <span th:text="${post.getCategory()}" ></span></p>
     <p>Treść:<p><p> <span th:text="${post.getPostText()}" ></span></p>
+    <p>Zdjęcia: </p><img th:src="@{${post.getFiles()}}">
 </li>
 </body>
 </html>

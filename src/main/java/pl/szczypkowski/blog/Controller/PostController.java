@@ -63,7 +63,7 @@ public class PostController {
             post.setUser(userOpitonal.get());
             Post savepost=postRepo.save(post);
 
-            return "postUploadSuccess";
+            return "addFile";
         }
     }
 
