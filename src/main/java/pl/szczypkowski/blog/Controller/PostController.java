@@ -53,7 +53,6 @@ public class PostController {
             return "addpost";
         }
 
-
         if(bindingResult.hasErrors())
         {
 

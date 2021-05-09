@@ -21,15 +21,17 @@
     <td>Hasło: <span th:text="${user.getPassword()}" ></span></td>
     <td>Urodziny: <span th:text="${user.getBirthday()}" ></span></td>
     <td>Rola: <span th:text="${user.getRole()}" ></span></td>
-    <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
-    <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
+    <td><a th:href="@{/editUser/{id}(id=${user.id})}">Edit</a></td>
+    <td><a th:href="@{/deleteUser/{id}(id=${user.id})}">Delete</a></td>
     </table>
-
+<p>--------------------------------------------------------------------</p>
 <table th:each="post:${posts}">
     <td>Temat: <span th:text="${post.getTopic()}" ></span></td>
     <td>Kategoria: <span th:text="${post.getCategory()}" ></span></td>
     <td>Treść: <span th:text="${post.getPostText()}" ></span></td>
     <td>Autor: <span th:text="${post.getUser()}" ></span></td>
+    <td><a th:href="@{/editPost/{id}(id=${post.id})}">Edit</a></td>
+    <td><a th:href="@{/deletePost/{id}(id=${post.id})}">Delete</a></td>
 
 </table>
 </body>

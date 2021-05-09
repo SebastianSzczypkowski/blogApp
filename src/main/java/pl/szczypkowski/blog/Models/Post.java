@@ -25,7 +25,8 @@ public class Post {
    private User user;
    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
    private List<FileData> files;
-
+    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
+    private List<Comment> comments;
     private String name;
     private  String type;
     public User getUser() {

@@ -46,7 +46,7 @@
     <a th:href="@{/logout}">Logout</a>
 </div>
 <h2>Zmień swoje dane:</h2>
-<form th:action="@{/update/{id}(id=${user.id})}"
+<form th:action="@{/updateUser/{id}(id=${user.id})}"
       th:object="${user}"
       method="post">
     <p>Podaj swoje imię: <input type="text" th:field="*{username}"></p>

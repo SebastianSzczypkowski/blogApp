@@ -50,6 +50,14 @@ public class AdminPanelController {
         model.addAttribute("user",user);
         return "edit";
     }
+    @GetMapping("/editPost/{id}")
+    public String editPost(@PathVariable("id")long id , Model model)
+    {
+        Post post = postRepo.findById(id).orElseThrow(()->new IllegalArgumentException("Invalid post ID:"+id));
+        model.addAttribute("post",post);
+        return "editPost";
+    }
+
 
     @PostMapping("/updateUser/{id}")
     public String updateUser(@PathVariable("id") long id, @Valid User user, BindingResult bindingResult,Model model)
@@ -62,13 +70,30 @@ public class AdminPanelController {
         userService.addUser(user);
         return "redirect:/adminPanel";
     }
-    @GetMapping("/delete/{id}")
+    @PostMapping("/updatePost/{id}")
+    public String updatePost(@PathVariable("id") long id , Post post,BindingResult bindingResult,Model model)
+    {
+        post.setId(id);
+        postService.addPost(post);
+        return "redirect:/adminPanel";
+    }
+
+    @GetMapping("/deleteUser/{id}")
     public String deleteUser(@PathVariable("id")long id,Model model){
         User user=userRepo.findById(id).orElseThrow(
                 ()->new IllegalArgumentException("Invalid user ID:" +id)
         );
         userRepo.delete(user);
         return"redirect:/adminPanel";
+    }
+    @GetMapping("/deletePost/{id}")
+    public String deletePost(@PathVariable("id")long id,Model model)
+    {
+        Post post=postRepo.findById(id).orElseThrow(
+                ()->new IllegalArgumentException("Invalid post ID:" +id)
+        );
+        postRepo.delete(post);
+        return "redirect:/adminPanel";
     }
 
 

@@ -26,7 +26,7 @@ public class ProfileController {
     }
 
     @RequestMapping(value="/profile", method = RequestMethod.GET)
-    public String profile(Principal principal, Model model)
+    public String yourProfile(Principal principal, Model model)
     {
         String name =principal.getName();
         Optional<User>userOpitonal =userRepo.findByUsername(name);
@@ -43,6 +43,10 @@ public class ProfileController {
 
         return "profile";
     }
-
+    @RequestMapping(value="/checkProfile", method = RequestMethod.GET)
+    public String profile(Principal principal, Model model)
+    {
+        return "UserProfile";
+    }
 
 }
