@@ -11,6 +11,7 @@ import pl.szczypkowski.blog.Repos.PostRepo;
 import pl.szczypkowski.blog.Repos.UserRepo;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,13 +33,13 @@ public class ProfileController {
         Optional<User>userOpitonal =userRepo.findByUsername(name);
         User user=userOpitonal.get();
 
-       Optional<Post> postList=(postRepo.findByUser(user));
+       ArrayList<Post> postList=(postRepo.findByUser(user));
         Post post = new Post();
 
         model.addAttribute("currentUser",userOpitonal.get());
         if(!postList.isEmpty())
         {
-            model.addAttribute("userPosts",postList.get());
+            model.addAttribute("userPosts",postList.subList(0, postList.size()-1));
         }
 
         return "profile";

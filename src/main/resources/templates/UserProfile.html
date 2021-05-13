@@ -2,13 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <title>Profile of user : ...</title>
     <link rel="stylesheet" href="style.css">
-    <title>Creat new post</title>
-    <style type="text/css">
-        body{
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
 <div class="topnav">
@@ -21,14 +16,6 @@
     <a th:href="@{/login}">Logi In</a>
     <a th:href="@{/logout}">Logout</a>
 </div>
-<h2>Dodaj swój nowy post na stronie</h2>
-<form th:action="@{/addYourPost}" th:object="${newPost}" method="post">
-    <p>Temat: <input type="text" th:field="*{topic}" ></p>
-    <p>Kategoria: <input type="text" th:field="*{category}" ></p>
-    <p><textarea  rows="30" cols="100"th:field="*{postText}" ></textarea></p>
-    <input type="submit" value="Opublikuj">
-</form>
-
 
 
 </body>

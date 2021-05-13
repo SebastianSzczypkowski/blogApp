@@ -15,6 +15,9 @@
     <a class="active" href="home">Home</a>
     <a th:href="@{/addPost}">Dodaj post</a>
     <a th:href="@{/profile}">Profile</a>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <a th:href="adminPanel" >AdminPanel</a>
+    </div>
     <a th:href="@{/login}">Logi In</a>
     <a th:href="@{/logout}">Logout</a>
 </div>
@@ -31,5 +34,6 @@
         <img th:src="@{${file.getPhotosImagePath()}}" />
     </td>
 </table>
+
 </body>
 </html>

@@ -44,7 +44,7 @@ public class FileData
     public String getPhotosImagePath() {
         if (name == null || id == null) return null;
 
-        return "/user-photos/" + id + "/" + name;
+        return "/post-files/" + id + "/" + name;
     }
 
     public FileData() {

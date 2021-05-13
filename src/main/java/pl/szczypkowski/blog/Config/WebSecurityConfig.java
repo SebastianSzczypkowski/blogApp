@@ -44,6 +44,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/addPost").authenticated()
                     .antMatchers("/edit").hasRole("ADMIN")
                     .antMatchers("/addFile").authenticated()
+                    .antMatchers("/uploadFile").authenticated()
+                    .antMatchers("/editUser").hasRole("ADMIN")
+                    .antMatchers("/editPost").hasRole("ADMIN")
+                    .antMatchers("/updateUser").hasRole("ADMIN")
+                    .antMatchers("/updatePost").hasRole("ADMIN")
+                    .antMatchers("/deleteUser").hasRole("ADMIN")
+                    .antMatchers("/deletePost").hasRole("ADMIN")
+                    .antMatchers("/addYourComment").authenticated()
+                    .antMatchers("/addPost").authenticated()
+                    .antMatchers("/addYourPost").authenticated()
+                    .antMatchers("/profile").authenticated()
+                    .antMatchers("/checkProfile").authenticated()
                     .and().formLogin().defaultSuccessUrl("/home");
     }
 }

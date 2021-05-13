@@ -31,16 +31,22 @@
 
 <p>Najnowsze posty: </p>
 
-<li th:each="post:${posts}">
+<li th:each="post:${posts}" >
    <a th:href="@{/checkProfile}"><p>Autor: <span  th:text="${post.getUser().getUsername()}"></span></p></a>
     <p>Temat: <span th:text="${post.getTopic()}" ></span></p>
     <p>Kategoria: <span th:text="${post.getCategory()}" ></span></p>
     <p>Treść:<p><p> <span th:text="${post.getPostText()}" ></span></p>
-    <p > Zdjęcia: <img th:src="@{${post.getFiles()}}"></p>
+    <p> Zdjęcia:
+        </p>
+
     <form th:action="@{/addYourComment}" th:object="${newComment}" method="post">
        <p> Wpisz swój komentarz: <input type="text" th:field="*{text}"></p>
         <p><input type="submit" value="Wyślij"></p>
     </form>
 </li>
+<li th:each="file:${files}">
+    <img th:src="@{${file.photosImagePath}}">
+</li>
+
 </body>
 </html>
