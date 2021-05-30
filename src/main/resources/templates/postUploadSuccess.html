@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="topnav">
-    <a class="active" href="home">Home</a>
+    <a class="active" th:href="@{/home}">Home</a>
     <a th:href="@{/addPost}">Dodaj post</a>
     <div sec:authorize="hasRole('ROLE_ADMIN')">
         <a th:href="adminPanel" >AdminPanel</a>

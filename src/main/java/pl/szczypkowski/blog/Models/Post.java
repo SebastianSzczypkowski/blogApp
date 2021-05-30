@@ -11,7 +11,7 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long post_id;
     @NotBlank
     @Size(min=3,max=120)
     private String topic;
@@ -19,6 +19,7 @@ public class Post {
     @Size(min=3,max=100)
     private String category;
     @NotBlank
+    @Lob
     private String postText;
    @ManyToOne
    @JoinColumn(name="user_id")
@@ -27,6 +28,14 @@ public class Post {
    private List<FileData> files;
     @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
     private List<Comment> comments;
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
     public User getUser() {
         return user;
@@ -44,7 +53,7 @@ public class Post {
         this.user = user;
     }
 
-    public Post(@NotBlank @Size(min = 3, max = 120) String topic, @NotBlank @Size(min = 3, max = 100) String category, @NotBlank String postText, User user) {
+    public Post( String topic,  String category,  String postText, User user) {
         this.topic = topic;
         this.category = category;
         this.postText = postText;
@@ -54,12 +63,12 @@ public class Post {
     public Post() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getPost_id() {
+        return post_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPost_id(Long id) {
+        this.post_id = id;
     }
 
     public String getTopic() {

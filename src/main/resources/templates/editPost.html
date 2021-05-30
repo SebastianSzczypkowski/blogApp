@@ -38,7 +38,7 @@
 </head>
 <body>
 <div class="topnav">
-    <a class="active" href="home">Home</a>
+    <a class="active" th:href="@{/home}">Home</a>
     <a th:href="@{/addPost}">Dodaj post</a>
     <a th:href="@{/profile}">Profile</a>
     <div sec:authorize="hasRole('ROLE_ADMIN')">
@@ -48,7 +48,7 @@
     <a th:href="@{/logout}">Logout</a>
 </div>
 <h2>Witaj w edycji postu</h2>
-<form th:action="@{/updatePost/{id}(id=${post.id})}" th:object="${post}" method="post">
+<form th:action="@{/updatePost/{id}(id=${post.post_id})}" th:object="${post}" method="post">
     <p>Temat: <input type="text" th:field="*{topic}" ></p>
     <p>Kategoria: <input type="text" th:field="*{category}" ></p>
     <p><textarea  rows="30" cols="100"th:field="*{postText}" ></textarea></p>

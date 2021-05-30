@@ -3,6 +3,7 @@ package pl.szczypkowski.blog.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.szczypkowski.blog.Models.Post;
@@ -44,9 +45,12 @@ public class ProfileController {
 
         return "profile";
     }
-    @RequestMapping(value="/checkProfile", method = RequestMethod.GET)
-    public String profile(Principal principal, Model model)
+    @RequestMapping(value="/checkProfile/{id}", method = RequestMethod.GET)
+    public String profile(@PathVariable("id") long id, Principal principal, Model model)
     {
+
+        User user=userRepo.findById(id).orElseThrow(()-> new IllegalArgumentException("Invalid user ID:" +id));
+        model.addAttribute("userProfile",user);
         return "UserProfile";
     }
 

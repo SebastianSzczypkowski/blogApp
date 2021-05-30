@@ -1,15 +1,12 @@
 package pl.szczypkowski.blog.Models;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import net.bytebuddy.implementation.bind.annotation.Default;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.security.auth.Subject;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -20,10 +17,11 @@ import java.util.*;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @JsonIgnore
+    private Long user_id;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Post> posts;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Comment> comments;
     @NotBlank(message = "Musisz podać swoje imie")
     @Size(min=3,max=25,message = "Twoje imie musi składać się conajmniej z 3 znaków oraz musi mieć ich niewięcej niż 25")
     //@Transient
@@ -39,6 +37,14 @@ public class User implements UserDetails {
     private String role;
     private String rank;
     private boolean isEnable;
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
     public List<Post> getPosts() {
         return posts;
@@ -65,12 +71,12 @@ public class User implements UserDetails {
     public User() {
 
     }
-    public Long getId() {
-        return id;
+    public Long getUser_id() {
+        return user_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUser_id(Long id) {
+        this.user_id = id;
     }
 
     public String getUsername() {
@@ -156,7 +162,7 @@ public class User implements UserDetails {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id=" + user_id +
                 ", username='" + username + '\'' +
                 ", emailAddress='" + emailAddress + '\'' +
                 ", birthday=" + birthday +

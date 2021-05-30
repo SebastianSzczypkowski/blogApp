@@ -4,35 +4,39 @@
     <meta charset="UTF-8">
     <title>ADMINPANEL</title>
     <link rel="stylesheet" href="style.css">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
 
 <div class="topnav">
-    <a class="active" href="home">Home</a>
+    <a class="active" th:href="@{/home}">Home</a>
     <a th:href="@{/addPost}">Dodaj post</a>
     <a th:href="@{/profile}">Profile</a>
     <a th:href="@{/login}">Logi In</a>
     <a th:href="@{/logout}">Logout</a>
 </div>
-
-<table th:each="user:${users}">
-    <td>Imie: <span th:text="${user.getUsername()}" ></span></td>
-    <td>Email: <span th:text="${user.getEmailAddress()}" ></span></td>
-    <td>Hasło: <span th:text="${user.getPassword()}" ></span></td>
-    <td>Urodziny: <span th:text="${user.getBirthday()}" ></span></td>
-    <td>Rola: <span th:text="${user.getRole()}" ></span></td>
-    <td><a th:href="@{/editUser/{id}(id=${user.id})}">Edit</a></td>
-    <td><a th:href="@{/deleteUser/{id}(id=${user.id})}">Delete</a></td>
-    </table>
-<p>--------------------------------------------------------------------</p>
-<table th:each="post:${posts}">
-    <td>Temat: <span th:text="${post.getTopic()}" ></span></td>
-    <td>Kategoria: <span th:text="${post.getCategory()}" ></span></td>
-    <td>Treść: <span th:text="${post.getPostText()}" ></span></td>
-    <td>Autor: <span th:text="${post.getUser()}" ></span></td>
-    <td><a th:href="@{/editPost/{id}(id=${post.id})}">Edit</a></td>
-    <td><a th:href="@{/deletePost/{id}(id=${post.id})}">Delete</a></td>
-
+<p>Użytkownicy:</p>
+<table th:each="user:${users}"  class="table-dark table-responsive table-bordered">
+    <tr class="row">
+    <td class="col">Imie: <span th:text="${user.getUsername()}" ></span></td>
+    <td class="col">Email: <span th:text="${user.getEmailAddress()}" ></span></td>
+    <td class="col">Hasło: <span th:text="${user.getPassword()}" ></span></td>
+    <td class="col">Urodziny: <span th:text="${user.getBirthday()}" ></span></td>
+    <td class="col">Rola: <span th:text="${user.getRole()}" ></span></td>
+    <td class="col"><a th:href="@{/editUser/{id}(id=${user.user_id})}">Edit</a></td>
+    <td class="col"><a th:href="@{/deleteUser/{id}(id=${user.user_id})}">Delete</a></td>
+    </tr>
+</table>
+<p>Posty: </p>
+<table th:each="post:${posts}" class="table-dark table-responsive table-bordered">
+    <tr class="row">
+    <td class="col">Temat: <span th:text="${post.getTopic()}" ></span></td>
+    <td class="col">Kategoria: <span th:text="${post.getCategory()}" ></span></td>
+    <td class="col">Treść: <span th:text="${post.getPostText()}" ></span></td>
+    <td class="col">Autor: <span th:text="${post.getUser()}" ></span></td>
+    <td class="col"><a th:href="@{/editPost/{id}(id=${post.post_id})}">Edit</a></td>
+    <td class="col"><a th:href="@{/deletePost/{id}(id=${post.post_id})}">Delete</a></td>
+    </tr>
 </table>
 </body>
 

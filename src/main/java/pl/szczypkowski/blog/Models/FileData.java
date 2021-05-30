@@ -1,8 +1,6 @@
 package pl.szczypkowski.blog.Models;
 
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 @Entity
@@ -11,7 +9,7 @@ public class FileData
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long file_id;
     private String name;
     private  String type;
 
@@ -42,20 +40,20 @@ public class FileData
     }
     @Transient
     public String getPhotosImagePath() {
-        if (name == null || id == null) return null;
+        if (name == null || file_id == null) return null;
 
-        return "/post-files/" + id + "/" + name;
+        return "/post-files/" + file_id + "/" + name;
     }
 
     public FileData() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getFile_id() {
+        return file_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setFile_id(Long id) {
+        this.file_id = id;
     }
 
     public String getName() {

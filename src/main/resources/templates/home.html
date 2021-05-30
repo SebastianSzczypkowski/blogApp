@@ -9,7 +9,7 @@
 <body>
 
 <div class="topnav">
-    <a class="active" href="home">Home</a>
+    <a class="active" th:href="@{/home}">Home</a>
     <a th:href="@{/addPost}">Dodaj post</a>
     <div sec:authorize="hasRole('ROLE_ADMIN')">
         <a th:href="adminPanel" >AdminPanel</a>
@@ -21,32 +21,22 @@
 
 <h3>Witaj <span th:text="${name}"></span> </h3>
 
-<table>
-    <th:block th:each="auth :${authorities}">
-        <tr>
-            <td th:text="${auth}">...</td>
-        </tr>
-    </th:block>
-</table>
+
 
 <p>Najnowsze posty: </p>
 
-<li th:each="post:${posts}" >
-   <a th:href="@{/checkProfile}"><p>Autor: <span  th:text="${post.getUser().getUsername()}"></span></p></a>
-    <p>Temat: <span th:text="${post.getTopic()}" ></span></p>
-    <p>Kategoria: <span th:text="${post.getCategory()}" ></span></p>
-    <p>Treść:<p><p> <span th:text="${post.getPostText()}" ></span></p>
-    <p> Zdjęcia:
-        </p>
+<table th:each="post:${posts}" >
+    <td>
+  <tr> <a th:href="@{/checkProfile/{id}(id=${post.getUser().getUser_id()})}">Autor: <span th:text="${post.getUser().getUsername()}"></span></a> || </tr>
+    <tr>Temat: <span th:text="${post.getTopic()}" ></span> || </tr>
+    <tr>Kategoria: <span th:text="${post.getCategory()}" ></span> || </tr>
+    <tr>Treść: <span th:text="${post.getPostText()}" ></span> || </tr>
+    <tr> Zdjęcia: || </tr>
+    <tr><a th:href="@{/readPost/{id}(id=${post.post_id})}"><button >Czytaj</button></a></tr>
+    </td>
 
-    <form th:action="@{/addYourComment}" th:object="${newComment}" method="post">
-       <p> Wpisz swój komentarz: <input type="text" th:field="*{text}"></p>
-        <p><input type="submit" value="Wyślij"></p>
-    </form>
-</li>
-<li th:each="file:${files}">
-    <img th:src="@{${file.photosImagePath}}">
-</li>
+</table>
+
 
 </body>
 </html>

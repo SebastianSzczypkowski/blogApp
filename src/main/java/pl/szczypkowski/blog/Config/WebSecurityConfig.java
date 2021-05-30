@@ -12,7 +12,7 @@ import pl.szczypkowski.blog.Service.UserDetailsServiceImpl;
 
 
 @Configuration
-//@EnableWebSecurity
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         @Bean

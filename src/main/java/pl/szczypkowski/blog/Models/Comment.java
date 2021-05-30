@@ -7,12 +7,23 @@ import javax.persistence.*;
 public class Comment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long comment_id;
     private String text;
     @ManyToOne
     @JoinColumn(name="post_id")
     private Post post;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Comment() {
     }
@@ -21,12 +32,12 @@ public class Comment {
         this.text = text;
     }
 
-    public Long getId() {
-        return id;
+    public Long getComment_id() {
+        return comment_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setComment_id(Long id) {
+        this.comment_id = id;
     }
 
     public String getText() {

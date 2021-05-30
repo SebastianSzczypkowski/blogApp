@@ -33,6 +33,7 @@ public class HomeController {
     private FileRepo fileRepo;
 
 
+
     public HomeController(PostService postService, CommentRepo commentRepo, UserRepo userRepo, PostRepo postRepo, FileRepo fileRepo) {
         this.postService = postService;
         this.commentRepo = commentRepo;
@@ -48,31 +49,12 @@ public class HomeController {
         model.addAttribute("authorities",authorities);
         List<Post> postList =(List<Post>) postService.findAll();
 
-        List<FileData> files = fileRepo.findAll();
-        model.addAttribute("files",files);
         model.addAttribute("posts",postList);
         model.addAttribute("name",principal.getName());
-        model.addAttribute("newComment",new Comment());
 
         return "home";
     }
 
-    @PostMapping("/addYourComment")
-    public String addComment(@ModelAttribute("newComment")Comment comment,Principal principal ,Model model)
-    {
-        String name =principal.getName();
-        Optional<User> userOpitonal =userRepo.findByUsername(name);
-        ArrayList<Post> postOptional = postRepo.findByUser(userOpitonal.get());
-        if(comment.getText()==null)
-        {
-            return "redirect:/home";
-        }
-        else
-        {
-            comment.setPost(postOptional.get(0));
-            Comment savecomment=commentRepo.save(comment);
-            return "redirect:/home";
-        }
-    }
+
 
 }

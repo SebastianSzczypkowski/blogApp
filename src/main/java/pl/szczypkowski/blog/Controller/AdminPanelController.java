@@ -64,7 +64,7 @@ public class AdminPanelController {
     {
         if(bindingResult.hasErrors())
         {
-            user.setId(id);
+            user.setUser_id(id);
             return "redirect:/edit";
         }
         userService.addUser(user);
@@ -73,7 +73,7 @@ public class AdminPanelController {
     @PostMapping("/updatePost/{id}")
     public String updatePost(@PathVariable("id") long id , Post post,BindingResult bindingResult,Model model)
     {
-        post.setId(id);
+        post.setPost_id(id);
         postService.addPost(post);
         return "redirect:/adminPanel";
     }

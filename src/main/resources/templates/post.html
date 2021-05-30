@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <title>Post</title>
     <link rel="stylesheet" href="style.css">
-    <title>EditUser</title>
     <style type="text/css">
         body{
             text-align: center;
@@ -35,34 +35,41 @@
             color: white;
         }
     </style>
-
 </head>
 <body>
 <div class="topnav">
     <a class="active" th:href="@{/home}">Home</a>
     <a th:href="@{/addPost}">Dodaj post</a>
-    <a th:href="@{/profile}">Profile</a>
     <div sec:authorize="hasRole('ROLE_ADMIN')">
         <a th:href="adminPanel" >AdminPanel</a>
     </div>
+    <a th:href="@{/profile}">Profile</a>
     <a th:href="@{/login}">Logi In</a>
     <a th:href="@{/logout}">Logout</a>
 </div>
-<h2>Zmień swoje dane:</h2>
-<form th:action="@{/updateUser/{id}(id=${user.user_id})}"
-      th:object="${user}"
-      method="post">
-    <p>Podaj swoje imię: <input type="text" th:field="*{username}"></p>
-    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Podałeś błędne imie :</span>
-    <p>Podaj adres e-mail: <input type="text" th:field="*{emailAddress}"></p>
-    <span th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}">Podałeś błędny adres e-mail :</span>
-    <p>Hasło: <input type="password" th:field="*{password}"></p>
-    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Twoje hasło jest niepoprawne: </span>
-    <p>Data urodzenia: <input type="date" th:field="*{birthday}"> </p>
-    <p>Rola: <input type="text" th:field="*{role}"> </p>
-    <p>Aktywność konta: <input type="text" th:field="*{enabled}"> </p>
-    <p><input type="submit" value="Zapisz zmiany"></p>
+
+Autor:  <span th:text="${post.getUser().getUsername()}"></span>
+<p>Kategoria: <span th:text="${post.getCategory()}"></span> </p>
+<p>Temat: <span th:text="${post.getTopic()}" ></span></p>
+<p>Tekst: <span th:text="${post.getPostText()}"></span>
+</p>
+<li th:each="file:${files}">
+
+    <img th:src="@{${file.photosImagePath}}">
+</li>
+<table  th:each="comment:${comments}">
+
+<p> Komentarz od: <span th:text="${comment.getUser().getUsername()}"></span>
+    | Treść: <span  th:text="${comment.getText()}"></span> </p>
+
+</table>
+<form th:action="@{/addYourComment/{id}(id=${post.post_id})}" th:object="${newComment}" method="post" >
+
+    <p> Wpisz swój komentarz: <input type="text" th:field="*{text}" ></p>
+    <p><input type="submit" value="Wyślij"></p>
+    </input>
 </form>
+
 
 </body>
 </html>

@@ -60,7 +60,7 @@ public class FileController {
             filedata.setType(file.getContentType());
             filedata.setPost(postList.get(postList.size()-1));
             FileData savefile = fileRepo.save(filedata);
-            String uploadDir = "post-files/" + savefile.getId();
+            String uploadDir = "post-files/" + savefile.getFile_id();
             FileUploadUtil.saveFile(uploadDir, fileName, file);
         }
 
